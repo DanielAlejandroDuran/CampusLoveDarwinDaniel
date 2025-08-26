@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/camper/CampusLoveDarwinDaniel/CampusLove.csproj": {}
+    "C:\\Users\\felip\\Documents\\CampusLoveDarwinDaniel\\CampusLove.csproj": {}
   },
   "projects": {
-    "/home/camper/CampusLoveDarwinDaniel/CampusLove.csproj": {
+    "C:\\Users\\felip\\Documents\\CampusLoveDarwinDaniel\\CampusLove.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/camper/CampusLoveDarwinDaniel/CampusLove.csproj",
+        "projectUniqueName": "C:\\Users\\felip\\Documents\\CampusLoveDarwinDaniel\\CampusLove.csproj",
         "projectName": "CampusLove",
-        "projectPath": "/home/camper/CampusLoveDarwinDaniel/CampusLove.csproj",
-        "packagesPath": "/home/camper/.nuget/packages/",
-        "outputPath": "/home/camper/CampusLoveDarwinDaniel/obj/",
+        "projectPath": "C:\\Users\\felip\\Documents\\CampusLoveDarwinDaniel\\CampusLove.csproj",
+        "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\felip\\Documents\\CampusLoveDarwinDaniel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/camper/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,12 +38,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.8, )"
@@ -66,6 +70,10 @@
               "target": "Package",
               "version": "[9.0.8, )"
             },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[9.0.0-rc.1.efcore.9.0.0, )"
@@ -83,14 +91,11 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

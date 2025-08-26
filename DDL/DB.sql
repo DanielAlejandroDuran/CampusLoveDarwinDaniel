@@ -37,3 +37,6 @@ CREATE TABLE Interacciones (
     CONSTRAINT fk_destino FOREIGN KEY (UsuarioDestinoId) REFERENCES Usuarios(UsuarioId) ON DELETE CASCADE,
     CONSTRAINT uq_interaccion UNIQUE (UsuarioOrigenId, UsuarioDestinoId) -- evita duplicados
 );
+-- Agregar columna para almacenar el hash de la contraseña
+ALTER TABLE Usuarios
+ADD COLUMN PasswordHash VARCHAR(255) NULL;
