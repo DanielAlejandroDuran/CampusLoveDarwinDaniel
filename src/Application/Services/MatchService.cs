@@ -65,6 +65,28 @@ namespace CampusLove.Application.Services
             return (true, "Autenticación correcta.", u);
         }
 
+        public async Task<(bool Success, string Message, Usuario? Usuario)> AuthenticateByNameAsync(string nombre, string? password)
+        {
+            if (string.IsNullOrWhiteSpace(nombre)) return (false, "El nombre es requerido.", null);
+            
+            var u = await _usuarios.GetByNameAsync(nombre.Trim());
+            if (u == null) return (false, "Usuario no encontrado.", null);
+
+            if (string.IsNullOrEmpty(u.PasswordHash))
+            {
+                // Modo legacy: permitir acceso sin contraseña
+                return (true, "Usuario sin contraseña (acceso legacy permitido).", u);
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+                return (false, "Contraseña requerida.", null);
+
+            var ok = PasswordHelper.Verify(password, u.PasswordHash!);
+            if (!ok) return (false, "Contraseña incorrecta.", null);
+
+            return (true, $"¡Bienvenido {u.Nombre}!", u);
+        }
+
         private void EnsureCreditosRecargados(Usuario u)
         {
             if (u.UltimaRecargaCreditos.Date < DateTime.UtcNow.Date)

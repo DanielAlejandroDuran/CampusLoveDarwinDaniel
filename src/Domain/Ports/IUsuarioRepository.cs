@@ -9,8 +9,10 @@ namespace CampusLove.Domain.Ports
         Task<Usuario> AddAsync(Usuario usuario);
         Task<Usuario?> GetByIdAsync(int id);
         Task<Usuario?> GetByIdNoTrackingAsync(int id);
+        Task<Usuario?> GetByNameAsync(string nombre);
         Task<List<Usuario>> GetAllAsync();
         Task<List<Usuario>> GetProfilesForAsync(int requestingUserId, int page = 0, int pageSize = 20);
         Task SaveChangesAsync();
     }
 }
+

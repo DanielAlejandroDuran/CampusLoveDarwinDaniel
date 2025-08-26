@@ -26,6 +26,9 @@ namespace CampusLove.Infrastructure.Repositories
         public async Task<Usuario?> GetByIdNoTrackingAsync(int id) =>
             await _db.Usuarios.AsNoTracking().Include(u => u.Intereses).FirstOrDefaultAsync(u => u.UsuarioId == id);
 
+        public async Task<Usuario?> GetByNameAsync(string nombre) =>
+            await _db.Usuarios.Include(u => u.Intereses).FirstOrDefaultAsync(u => u.Nombre == nombre);
+
         public async Task<List<Usuario>> GetAllAsync() =>
             await _db.Usuarios.Include(u => u.Intereses).ToListAsync();
 
@@ -49,3 +52,4 @@ namespace CampusLove.Infrastructure.Repositories
         public async Task SaveChangesAsync() => await _db.SaveChangesAsync();
     }
 }
+

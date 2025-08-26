@@ -11,6 +11,7 @@ namespace CampusLove.Adapters.ConsoleApp
         private readonly MatchService _service;
         private readonly IUsuarioRepository _usuarios;
         private int? _currentUserId = null;
+        private string? _currentUserName = null;
 
         public ConsoleApp(MatchService service, IUsuarioRepository usuarios)
         {
@@ -41,7 +42,7 @@ namespace CampusLove.Adapters.ConsoleApp
                 }
                 else
                 {
-                    Console.WriteLine($"Conectado como usuario {_currentUserId}");
+                    Console.WriteLine($"Conectado como: {_currentUserName} (ID: {_currentUserId})");
                     Console.WriteLine("1) Ver perfiles y dar Like/Dislike");
                     Console.WriteLine("2) Ver mis coincidencias");
                     Console.WriteLine("3) Estadísticas (Top likes)");
@@ -54,7 +55,7 @@ namespace CampusLove.Adapters.ConsoleApp
                         case "1": await BrowseFlow(); break;
                         case "2": await MatchesFlow(); break;
                         case "3": await StatsFlow(); break;
-                        case "4": _currentUserId = null; break;
+                        case "4": _currentUserId = null; _currentUserName = null; break;
                         case "0": return;
                         default: Console.WriteLine("Opción inválida."); break;
                     }
@@ -66,14 +67,18 @@ namespace CampusLove.Adapters.ConsoleApp
 
         private async Task LoginFlow()
         {
-            Console.Write("UsuarioId: ");
-            int.TryParse(Console.ReadLine(), out int id);
+            Console.Write("Nombre de usuario: ");
+            var nombre = Console.ReadLine() ?? "";
             Console.Write("Contraseña (dejar vacío si no tienes): ");
             var pass = ReadPassword();
 
-            var res = await _service.AuthenticateAsync(id, pass);
+            var res = await _service.AuthenticateByNameAsync(nombre, pass);
             Console.WriteLine(res.Message);
-            if (res.Success) _currentUserId = res.Usuario?.UsuarioId;
+            if (res.Success) 
+            {
+                _currentUserId = res.Usuario?.UsuarioId;
+                _currentUserName = res.Usuario?.Nombre;
+            }
         }
 
         private async Task RegisterFlow()
